@@ -72,7 +72,7 @@ let respecConfig = {
       }
     ],
   //neem hier de URL van de github repository op waar het respec document in staat
-  github: "https://github.com/Geonovum/gpkg/apps/areaalgegevens",
+  github: "https://github.com/Geonovum/gpkg/tree/main/apps/areaalgegevens",
   // Create PDF and link to file in header (optional):
   // TODO: Change the filename as preferred.
   //alternateFormats: [
