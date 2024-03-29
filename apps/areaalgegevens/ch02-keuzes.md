@@ -29,10 +29,6 @@ geleid tot de integratie van gegevens, zoals hieronder beschreven.
 | Waardenlijst     | gpkg_data_column_constraints | description                   | value                      |
 | Attribuutwaarden | gpkg_data_column_constraints | description                   | value                      |
 
-## 
-
-## 
-
 ## Eenheid van waarden
 
 ## In het Geopackage-formaat ontbreekt een ingebouwd mechanisme voor het vastleggen van eenheden van attribuutwaarden in een kolom. Hoewel de metadata-extensie geen specifieke ondersteuning biedt voor eenheden, kunnen andere metadata wel worden vastgelegd. Verschillende alternatieven, elk met hun voor- en nadelen, zijn overwogen:
