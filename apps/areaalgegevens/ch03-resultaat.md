@@ -3,7 +3,7 @@
 ## Referentie-implementatie
 
 Aan de hand van de volgende voorbeelddata is een proefimplementatie van
-areaalgegevens in Geopackage uitgevoerd.
+IMBOR-areaalgegevens in Geopackage uitgevoerd.
 
 Tabel Voorbeelddata IMBOR eigenschappen
 
@@ -22,31 +22,26 @@ Tabel Voorbeelddata IMBOR eigenschappen
 
 Tabel Voorbeeldata IMBOR relaties
 
-|         | **IMBOR - kolom** | **IMBOR - waarde**                                                                                                                          |
-|---------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Subject | SubjectURI        | [https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601\|](https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601 |
-|         | SubjectLabel      | Weg                                                                                                                                         |
-|         |                   |                                                                                                                                             |
-|         |                   |                                                                                                                                             |
-| Relatie | heeftRelatieURI   | [https://w3id.org/nen2660/def\#hasPart](https://w3id.org/nen2660/def#hasPart)                                                               |
-|         | heeftRelatieLabel | hasPart                                                                                                                                     |
-|         |                   |                                                                                                                                             |
-|         |                   |                                                                                                                                             |
-| Object  | ObjectURI         | https://data.crow.nl/imbor/def/3414e1e7-fd9f-4e93-b44a-e3bf5df08314                                                                         |
-|         | ObjectLabel       | Verkeerseiland                                                                                                                              |
-|         |                   |                                                                                                                                             |
-| Relatie | heeftRelatieURI   | [https://w3id.org/nen2660/def\#isDescribedBy](https://w3id.org/nen2660/def#isDescribedBy)                                                   |
-|         | heeftRelatieLabel | [isDescribedBy](https://w3id.org/nen2660/def#isDescribedBy)                                                                                 |
-|         |                   |                                                                                                                                             |
-|         |                   |                                                                                                                                             |
-| Object  | ObjectURI         | <https://data.crow.nl/imbor/def/8ab0ac02-ee94-4086-9b14-d53ede3c4101>                                                                       |
-|         | ObjectLabel       | Inwinningsinformatie                                                                                                                        |
-|         |                   |                                                                                                                                             |
+|         | **IMBOR - kolom** | **IMBOR - waarde**                                                                                                                           |
+|---------|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Subject | SubjectURI        | [https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601\|](https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601) |
+|         | SubjectLabel      | Weg                                                                                                                                          |
+| Relatie | heeftRelatieURI   | [https://w3id.org/nen2660/def\#hasPart](https://w3id.org/nen2660/def#hasPart)                                                                |
+|         | heeftRelatieLabel | hasPart                                                                                                                                      |
+| Object  | ObjectURI         | https://data.crow.nl/imbor/def/3414e1e7-fd9f-4e93-b44a-e3bf5df08314                                                                          |
+|         | ObjectLabel       | Verkeerseiland                                                                                                                               |
+|         |                   |                                                                                                                                              |
+| Relatie | heeftRelatieURI   | [https://w3id.org/nen2660/def\#isDescribedBy](https://w3id.org/nen2660/def#isDescribedBy)                                                    |
+|         | heeftRelatieLabel | [isDescribedBy](https://w3id.org/nen2660/def#isDescribedBy)                                                                                  |
+| Object  | ObjectURI         | <https://data.crow.nl/imbor/def/8ab0ac02-ee94-4086-9b14-d53ede3c4101>                                                                        |
+|         | ObjectLabel       | Inwinningsinformatie                                                                                                                         |
 
-Het template Geopackage is beschikbaar via
+Het voorbeeld Geopackage is beschikbaar via deze link:
+<https://geonovum.github.io/gpkg/apps/areaalgegevens/voorbeeld-geopackage-areaalgegevens-IMBOR-NEN2660.gpkg>
 
-Hierna volgt een beschrijving van de verschillende NEN2660-2 onderdelen en hoe
-deze in de template Geopackage zijn opgenomen.
+Hierna volgt een beschrijving van de verschillende IMBOR-onderdelen en hoe deze
+in de voorbeeld Geopackage zijn opgenomen. Van de UR’s wordt de prefix niet
+opgenomen, wel de identifier.
 
 ### Sub/object
 
@@ -60,14 +55,19 @@ N.B. bij attribuut lengte van Weg wordt de eenheid ‘M’ als postfix opgenomen
 
 **gpkg_contents**
 
-Definitie van sub/objecten wordt opgenomen in tabel gpkg_contents; de
-Identifier-URI van het sub/object wordt opgenomen in de kolom ‘identifier’ van
-tabel gpkg_contents
+Definitie van sub/objecten wordt opgenomen in tabel **gpkg_contents:**
+
+de machineleesbare identifier als onderdeel van de URI van het sub/object wordt
+opgenomen in de kolom ‘**table_name**\`
+
+en de mensleesbare alias wordt opgenomen in ‘**identifier**’
 
 ![Afbeelding met tekst, Lettertype, nummer, schermopname Automatisch
 gegenereerde beschrijving](media/ce935eae4d99076662f183c6befea7e6.png)
 
 ![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
+beschrijving](media/a2cddbb63dd93f2b433aa2c2e02dc116.png)![Afbeelding met tekst,
+Lettertype, lijn, nummer Automatisch gegenereerde
 beschrijving](media/d5923f1c015b95e4c38c3c174c20372d.png)
 
 ### Attributen
@@ -75,23 +75,20 @@ beschrijving](media/d5923f1c015b95e4c38c3c174c20372d.png)
 Attributen, zijnde de kenmerken/eigenschappen van de sub/objecten worden
 gedefinieerd in de tabel **gpkg_data_columns**:
 
--   (mensleesbare) naam van de eigenschap wordt opgenomen in kolom
-    ‘column_name’.
+-   (mensleesbare) naam van de eigenschap wordt opgenomen in kolom **‘name**’.
 
--   (machineleesbare) identifier-URI wordt opgenomen in kolom ‘name’.
-
--   
+-   (machineleesbare) identifier-URI wordt opgenomen in kolom ‘**column_name**’.
 
 ![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
 beschrijving](media/21c51f9456e15d7a72b7149bca6468f1.png)
 
 ![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
-beschrijving](media/8e7f97d95235f7b86af34204dc751f40.png)
+beschrijving](media/d451142c516f9492b50db7d511bebb0c.png)
 
 ### Enumeraties
 
-AEnumeraties (constraints op toegestane attribuutwaarden) worden gedefineerd in
-de tabel gpkg_data_column_constraints:
+Enumeraties (constraints op toegestane attribuutwaarden) worden gedefinieerd in
+de tabel **gpkg_data_column_constraints**:
 
 -   (mensleesbare) naam van de waardenlijst of attribuutwaarde wordt opgenomen
     in kolom ‘description’.
@@ -99,6 +96,9 @@ de tabel gpkg_data_column_constraints:
 -   (machineleesbare) identifier-URI wordt opgenomen in kolom ‘value’
 
 Waardenlijst krijgt in de constraint_name een ‘_’ als prefix.
+
+![Afbeelding met tekst, schermopname, Lettertype, lijn Automatisch gegenereerde
+beschrijving](media/47521d7f3e99797b6b777454bae1c114.png)
 
 ### Relaties
 
@@ -117,14 +117,11 @@ Related Tables Extension wordt gedefinieerd in tabel **gpkg_extensions**; voor
 elke relatie wordt een aparte *mapping table* aangemaakt, en elke relatie als
 record toegevoegd aan de tabel gpkg_extensions.
 
-![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
-beschrijving](media/24b5a75724b2708378a663c10ada5daf.png)
+![Afbeelding met tekst, Lettertype, nummer, lijn Automatisch gegenereerde
+beschrijving](media/e33a74e95ca437a6d5b4d602a09c73ae.png)
 
 ![Afbeelding met tekst, schermopname, nummer, Lettertype Automatisch
-gegenereerde beschrijving](media/9136c107dff8279c30d38a8083b856a1.png)
-
-![Afbeelding met tekst, schermopname, nummer, Lettertype Automatisch
-gegenereerde beschrijving](media/9136c107dff8279c30d38a8083b856a1.png)
+gegenereerde beschrijving](media/0845150fdc5da43022e0a93e63db2d17.png)
 
 In elke mapping table worden de instanties van de relaties in records
 vastgelegd.
@@ -142,18 +139,42 @@ relatie wordt opgenomen:
 
 -   naam van de *mapping tabel* met de instanties van de relatie.
 
-![Afbeelding met tekst, Lettertype, nummer, schermopname Automatisch
-gegenereerde beschrijving](media/9ceaea77d5ed375ff4b0af041d90c244.png)
+![Afbeelding met tekst, schermopname, Lettertype, nummer Automatisch
+gegenereerde beschrijving](media/5ce8d64614caec9f97871c322c4053af.png)
+
+![](media/558b3bd890b6e6c0efc3b9af71f0ab8b.png)
+
+### Resultaat in QGIS
 
 ![Afbeelding met tekst, Lettertype, lijn, schermopname Automatisch gegenereerde
-beschrijving](media/90d4bdcce41b1a655f08c5d85e43c09c.png)
+beschrijving](media/f45235974a3bbc3fb8f15a44e5a759d1.png)
 
-## Change requests Geopackage standaard
+## Change requests
 
-Hieruit volgen twee wijzigingsverzoeken voor de Geopackage standaard:
+Uit deze aanpak volgen twee wijzigingsverzoeken voor de Geopackage standaard:
 
--   Uitbreiden standaarden met de mogelijkheid voor het opnemen van eenheid als
-    metadata bij de kolommen.
+1\. Uitbreiding van de standaard met de mogelijkheid om eenheid als metadata bij
+de kolommen op te nemen:
 
--   Uitbreiden standaard met de mogelijkheid voor het opnemen van een URI van
-    een relatie.
+\- Deze aanpassing zou het mogelijk maken om informatie over de eenheden die
+worden gebruikt in specifieke attribuutkolommen binnen een GeoPackage op te
+nemen. Het toevoegen van eenheid als metadata zou bijvoorbeeld van cruciaal
+belang zijn bij attributen die meetwaarden vertegenwoordigen, zoals lengte,
+oppervlakte, volume, of andere metrische gegevens. Door eenheid als metadata toe
+te voegen, kunnen gebruikers nauwkeuriger begrijpen en interpreteren welke
+meeteenheden worden gebruikt in de attributen van de dataset.
+
+2\. Uitbreiding van de standaard met de mogelijkheid om een URI van een relatie
+op te nemen:
+
+\- Deze voorgestelde uitbreiding zou de mogelijkheid toevoegen om een uniform
+resource identifier (URI) van een gerelateerde dataset op te nemen binnen de
+structuur van het GeoPackage. Hierdoor kunnen gebruikers eenvoudig verwijzingen
+leggen naar externe bronnen of gerelateerde datasets die relevant zijn voor de
+gegevens die zijn opgeslagen in het GeoPackage. Door deze functionaliteit toe te
+voegen, wordt de interoperabiliteit tussen verschillende geografische datasets
+bevorderd, omdat het gemakkelijker wordt om verbanden te leggen tussen
+verschillende gegevensbronnen en externe informatiebronnen. Dit kan bijvoorbeeld
+nuttig zijn bij het koppelen van een GeoPackage met aanvullende contextuele
+gegevensbronnen, zoals administratieve grenzen, satellietbeelden, of andere
+geografische referentiematerialen.
