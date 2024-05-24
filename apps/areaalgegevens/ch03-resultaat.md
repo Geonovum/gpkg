@@ -42,10 +42,6 @@ Het voorbeeld Geopackage is beschikbaar via deze link:
 Hierna volgt een beschrijving van de verschillende IMBOR-onderdelen en hoe deze
 in de voorbeeld Geopackage zijn opgenomen.
 
-N.B. De machineleesbare identifier wordt gevuld met een URI, dus bijvoorbeeld
-https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601, of alleen
-het UUID, dus bijvoorbeeld 1ea4ee45-672d-477d-9bb4-6961418fe601
-
 ### Sub/object
 
 Structuur van sub/object wordt gedefinieerd in eigen feature tables. In deze
@@ -63,6 +59,8 @@ Definitie van sub/objecten wordt opgenomen in tabel **gpkg_contents:**
 
 -   mensleesbare alias wordt opgenomen in kolom ‘**identifier**’
 
+-   definitie van het object in de kolom **‘description’**
+
 ![Afbeelding met tekst, Lettertype, nummer, schermopname Automatisch
 gegenereerde beschrijving](media/ce935eae4d99076662f183c6befea7e6.png)
 
@@ -77,6 +75,9 @@ gedefinieerd in de tabel **gpkg_data_columns**:
 -   machineleesbare identifier wordt opgenomen in kolom ‘**column_name**’.
 
 -   mensleesbare naam van de eigenschap wordt opgenomen in kolom **‘name**’.
+
+-   definitie van het attribuut c.q. de eigenschap het in de kolom
+    **‘description’**
 
 ![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
 beschrijving](media/21c51f9456e15d7a72b7149bca6468f1.png)
@@ -104,6 +105,9 @@ de tabel **gpkg_data_column_constraints**:
 beschrijving](media/47521d7f3e99797b6b777454bae1c114.png)
 
 ### Relaties
+
+>   Het concept voor relaties staat hieronder beschreven, maar de exacte werking
+>   in software moet verder getest worden.
 
 Voor relaties tussen sub/objecten wordt de extensie Related Tables op GeoPackage
 toegepast.
@@ -140,10 +144,12 @@ relatie wordt opgenomen:
 -   de naam van de tabel (*table_name*) van de doeltabel in de kolom
     **‘related_table’**
 
--   naam van de relatie in de kolom **‘relation_name’** (naam relatie zelf te
-    kiezen)
+-   type van de relatie in de kolom **‘relation_name’.** Dit is waarde
+    ‘features’ bij verwijziging van een tussen twee features tables en
+    ‘simple_attributes’ bij verwijzing naar een attributentabel, zie
+    [https://www.geopackage.org/guidance/extensions/related_tables.html\#using-profiles](https://www.geopackage.org/guidance/extensions/related_tables.html#using-profiles).
 
--   naam van de *mapping tabel* in de kolom **‘mapping_table’**, waarin de
+-   naam van de *mapping table* in de kolom **‘mapping_table’**, waarin de
     instanties van de relatie worden vastgelegd.
 
 ![Afbeelding met tekst, schermopname, Lettertype, nummer Automatisch
@@ -200,3 +206,5 @@ interoperabiliteit tussen verschillende geografische datasets bevorderd, omdat
 het gemakkelijker wordt om verbanden te leggen tussen verschillende
 gegevensbronnen en externe informatiebronnen. Dit kan bijvoorbeeld nuttig zijn
 bij het koppelen van een GeoPackage met aanvullende gegevensbronnen.
+
+3\. Opnemen naam van de waardenlijst, nu kan alleen een identifier.

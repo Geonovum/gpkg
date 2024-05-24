@@ -81,6 +81,13 @@ Geopackage biedt hiervoor een standaardmechanisme via de table
 in de Geopackage, waardoor het mogelijk is om na het invoeren van gegevens te
 controleren of een toegevoegde waarde geldig is.
 
+## Identifiers
+
+Identifiers zijn vaak URIs, maar in de Geopackage leggen we alleen de UUID vast.
+Dit omdat relationele databases slecht om kunnen gaan met slashes koppeltekens,
+dubbele punt etc. dan ook beter bruikbaar in andere geo-formaten ook. Een UUID
+is van zichzelf al uniek, en daarmee herleidbaar naar het exacte ding.
+
 ## Relaties
 
 De GeoPackage-extensie Related Tables wordt gebruikt om relaties tussen
