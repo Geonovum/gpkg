@@ -9,7 +9,7 @@ Tabel Voorbeelddata IMBOR eigenschappen
 
 |                 | **IMBOR - kolom**     | **IMBOR - waarde**                                                                 |
 |-----------------|-----------------------|------------------------------------------------------------------------------------|
-| Concept         | FysiekObjectURI       | <https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601>              |
+| Concept         | FysiekObjectURI       | https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601                |
 |                 | FysiekObjectLabel     | Weg                                                                                |
 | Attribuut(vorm) | EigenschapURI         | <https://data.crow.nl/imbor/def/2b1b2ffa-6cdd-4c54-b8c3-475757e347ff>              |
 |                 | EigenschapLabel       | lengte                                                                             |
@@ -40,44 +40,43 @@ Het voorbeeld Geopackage is beschikbaar via deze link:
 <https://geonovum.github.io/gpkg/apps/areaalgegevens/voorbeeld-geopackage-areaalgegevens-IMBOR-NEN2660.gpkg>
 
 Hierna volgt een beschrijving van de verschillende IMBOR-onderdelen en hoe deze
-in de voorbeeld Geopackage zijn opgenomen. Van de UR’s wordt de prefix niet
-opgenomen, wel de identifier.
+in de voorbeeld Geopackage zijn opgenomen.
+
+N.B. De machineleesbare identifier wordt gevuld met een URI, dus bijvoorbeeld
+https://data.crow.nl/imbor/def/1ea4ee45-672d-477d-9bb4-6961418fe601, of alleen
+het UUID, dus bijvoorbeeld 1ea4ee45-672d-477d-9bb4-6961418fe601
 
 ### Sub/object
 
 Structuur van sub/object wordt gedefinieerd in eigen feature tables. In deze
 tabellen worden de instanties in records vastgelegd.
 
-![Afbeelding met tekst, software, Lettertype, nummer Automatisch gegenereerde
-beschrijving](media/30032b627fd4d133360f4d10a43a4826.png)
-
-N.B. bij attribuut lengte van Weg wordt de eenheid ‘M’ als postfix opgenomen.
+![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
+beschrijving](media/547d5fe0a922796196a215f9300aecc2.png)
 
 **gpkg_contents**
 
 Definitie van sub/objecten wordt opgenomen in tabel **gpkg_contents:**
 
-de machineleesbare identifier als onderdeel van de URI van het sub/object wordt
-opgenomen in de kolom ‘**table_name**\`
+-   machineleesbare identifier als onderdeel van de URI van het sub/object wordt
+    opgenomen in de kolom ‘**table_name**\`
 
-en de mensleesbare alias wordt opgenomen in ‘**identifier**’
+-   mensleesbare alias wordt opgenomen in kolom ‘**identifier**’
 
 ![Afbeelding met tekst, Lettertype, nummer, schermopname Automatisch
 gegenereerde beschrijving](media/ce935eae4d99076662f183c6befea7e6.png)
 
 ![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
-beschrijving](media/a2cddbb63dd93f2b433aa2c2e02dc116.png)![Afbeelding met tekst,
-Lettertype, lijn, nummer Automatisch gegenereerde
-beschrijving](media/d5923f1c015b95e4c38c3c174c20372d.png)
+beschrijving](media/a2cddbb63dd93f2b433aa2c2e02dc116.png)
 
 ### Attributen
 
 Attributen, zijnde de kenmerken/eigenschappen van de sub/objecten worden
 gedefinieerd in de tabel **gpkg_data_columns**:
 
--   (mensleesbare) naam van de eigenschap wordt opgenomen in kolom **‘name**’.
+-   machineleesbare identifier wordt opgenomen in kolom ‘**column_name**’.
 
--   (machineleesbare) identifier-URI wordt opgenomen in kolom ‘**column_name**’.
+-   mensleesbare naam van de eigenschap wordt opgenomen in kolom **‘name**’.
 
 ![Afbeelding met tekst, Lettertype, lijn, nummer Automatisch gegenereerde
 beschrijving](media/21c51f9456e15d7a72b7149bca6468f1.png)
@@ -90,12 +89,16 @@ beschrijving](media/d451142c516f9492b50db7d511bebb0c.png)
 Enumeraties (constraints op toegestane attribuutwaarden) worden gedefinieerd in
 de tabel **gpkg_data_column_constraints**:
 
--   (mensleesbare) naam van de waardenlijst of attribuutwaarde wordt opgenomen
-    in kolom ‘description’.
+-   machineleesbare identifier van de enumeratie of codelijst zijnde een
+    contraint wordt opgenomen in kolom **‘constraint_name’**. Deze waarde van de
+    constraint_name wordt toegevoegd aan kolom ‘constraint_name’ bij de kolom in
+    de tabel gpkg_data_columns (zie figuur hierboven).
 
--   (machineleesbare) identifier-URI wordt opgenomen in kolom ‘value’
+-   machineleesbare identifier van de enumeratiewaarde opgenomen in kolom
+    **‘value’**
 
-Waardenlijst krijgt in de constraint_name een ‘_’ als prefix.
+-   mensleesbare naam van de waardenlijst of attribuutwaarde wordt opgenomen in
+    kolom **‘description’**.
 
 ![Afbeelding met tekst, schermopname, Lettertype, lijn Automatisch gegenereerde
 beschrijving](media/47521d7f3e99797b6b777454bae1c114.png)
@@ -131,13 +134,17 @@ vastgelegd.
 De relaties worden gedefinieerd in de tabel **gpkg_ext_relations**. Voor elke
 relatie wordt opgenomen:
 
--   naam van de kolom met de identificatie in de brontabel (base_table)
+-   de naam van de tabel (*table_name*) van de brontabel in kolom
+    **‘base_table’**
 
--   naam van de kolom met de identificatie van de doeltabel (related_table)
+-   de naam van de tabel (*table_name*) van de doeltabel in de kolom
+    **‘related_table’**
 
--   naam van de relatie
+-   naam van de relatie in de kolom **‘relation_name’** (naam relatie zelf te
+    kiezen)
 
--   naam van de *mapping tabel* met de instanties van de relatie.
+-   naam van de *mapping tabel* in de kolom **‘mapping_table’**, waarin de
+    instanties van de relatie worden vastgelegd.
 
 ![Afbeelding met tekst, schermopname, Lettertype, nummer Automatisch
 gegenereerde beschrijving](media/5ce8d64614caec9f97871c322c4053af.png)
@@ -146,12 +153,29 @@ gegenereerde beschrijving](media/5ce8d64614caec9f97871c322c4053af.png)
 
 ### Resultaat in QGIS
 
+Het template geopackage is getest in QGIS.
+
+Bij het openen worden de tabellen als lagen met of zonder geometrie herkend:
+
 ![Afbeelding met tekst, Lettertype, lijn, schermopname Automatisch gegenereerde
 beschrijving](media/f45235974a3bbc3fb8f15a44e5a759d1.png)
 
+Van boven naar onder:
+
+1.  Objecten Weg met vlakgeometrie.
+
+2.  Objecten Verkeerseiland met vlakgeometrie
+
+3.  Gegevens over Inwinninginformatie zonder geometrie
+
+4.  Relatietabel tussen Weg en Verkeerseiland
+
+5.  Relatietabel tussen Weg en Inwinninginformatie
+
 ## Change requests
 
-Uit deze aanpak volgen twee wijzigingsverzoeken voor de Geopackage standaard:
+Uit deze aanpak volgen twee verbetersuggesties c.q. wijzigingsverzoeken voor de
+Geopackage standaard:
 
 1\. Uitbreiding van de standaard met de mogelijkheid om eenheid als metadata bij
 de kolommen op te nemen:
@@ -167,14 +191,12 @@ meeteenheden worden gebruikt in de attributen van de dataset.
 2\. Uitbreiding van de standaard met de mogelijkheid om een URI van een relatie
 op te nemen:
 
-\- Deze voorgestelde uitbreiding zou de mogelijkheid toevoegen om een uniform
-resource identifier (URI) van een gerelateerde dataset op te nemen binnen de
-structuur van het GeoPackage. Hierdoor kunnen gebruikers eenvoudig verwijzingen
-leggen naar externe bronnen of gerelateerde datasets die relevant zijn voor de
-gegevens die zijn opgeslagen in het GeoPackage. Door deze functionaliteit toe te
-voegen, wordt de interoperabiliteit tussen verschillende geografische datasets
-bevorderd, omdat het gemakkelijker wordt om verbanden te leggen tussen
-verschillende gegevensbronnen en externe informatiebronnen. Dit kan bijvoorbeeld
-nuttig zijn bij het koppelen van een GeoPackage met aanvullende contextuele
-gegevensbronnen, zoals administratieve grenzen, satellietbeelden, of andere
-geografische referentiematerialen.
+\- Deze voorgestelde uitbreiding zou de mogelijkheid toevoegen om een URI van een
+gerelateerde dataset op te nemen binnen de structuur van het GeoPackage.
+Hierdoor kunnen gebruikers eenvoudig verwijzingen leggen naar externe bronnen of
+gerelateerde datasets die relevant zijn voor de gegevens die zijn opgeslagen in
+het GeoPackage. Door deze functionaliteit toe te voegen, wordt de
+interoperabiliteit tussen verschillende geografische datasets bevorderd, omdat
+het gemakkelijker wordt om verbanden te leggen tussen verschillende
+gegevensbronnen en externe informatiebronnen. Dit kan bijvoorbeeld nuttig zijn
+bij het koppelen van een GeoPackage met aanvullende gegevensbronnen.

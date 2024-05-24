@@ -2,18 +2,22 @@
 
 ## Aanleiding
 
-De afgelopen decennia hebben (semi-)overheidsinstanties steeds vaker hun
-specifieke informatiebehoeften vastgelegd in datamodellen, die vervolgens aan de
-markt worden voorgelegd. Dit proces omvat het lezen van het model door de
-opdrachtnemer, het produceren van gegevens op basis van dit model en het
-terugleveren ervan aan de opdrachtgever voor validatie. Deze gegevens worden dan
-geïntegreerd in het achterliggende applicatielandschap.
-
-Echter, er is behoefte ontstaan aan een uniforme structuur om te voorkomen dat
-organisaties hun behoeften in willekeurige datamodellen specificeren. Dit heeft
-geleid tot de ontwikkeling van de NEN 2660-2, een concreet topmodel dat
-organisaties in staat stelt om hun specifieke behoeften uniform te structureren
-en als model aan de markt voor te leggen.
+De afgelopen 10 jaar specificeren steeds meer (semi-)overheden hun
+informatiebehoefte middels een datamodel richting de markt. De opdrachtnemer
+leest het model in een applicatie, produceert data op basis van dit model en
+levert deze terug. De opdrachtgever valideert de data (cf. het model) en bij
+acceptatie wordt de data verwerkt in het achterliggende applicatielandschap. Om
+te voorkomen dat organisaties hun behoeftes in arbitraire datamodellen
+specificeren, is een concreet topmodel opgesteld: de NEN 2660-2. Deze maakt het
+mogelijk dat organisaties hen specifieke behoeftes alsnog uniform kunnen
+structureren en zo als model uitvragen aan de markt. In een provinciale context
+is de uitwisseling van geometrie (als vectordata) essentieel. Denk aan punten,
+lijnen, (multi)vlakken e.d. Deze vectordata in combinatie met tabellen laten
+zich goed vastleggen in een geo-bestandsformaat. Vanuit praktisch oogpunt wordt
+momenteel het gesloten Esri-bestandsformaat ‘’file geodatabase’’ toegepast als
+uitwisselformaat door Provincie Zuid-Holland en Provincie Gelderland. Middels
+deze verkenning willen de Provincies onderzoeken of het open
+Geopackage-bestandsformaat zich hiervoor in de praktijk leent.
 
 ## Doel
 
@@ -22,28 +26,38 @@ Geopackage als uitwisselingsformaat voor areaalgegevens. Voor meer informatie
 over Geopackage, zie de handreiking Geopackage van Geonovum.
 
 In de opdracht lag de focus op het modelleren van informatiebehoeften, met name
-gericht op objecttypen, attributen en relaties, in het Geopackage-formaat. Het
-doel was om te bepalen of Geopackage geschikt is voor het uitwisselen van
-dergelijke gegevens, vooral in vergelijking met het traditionele gebruik van het
-Esri-bestandsformaat 'file geodatabase' door Provincie Zuid-Holland en Provincie
-Gelderland. Geonovum was betrokken bij deze opdracht vanwege haar rol als
-kennisorganisatie op het gebied van geo-standaardisatie in Nederland.
+gericht op objecttypen, attributen, attribuutwaarden en relaties, in het
+Geopackage-formaat. Het doel was om te bepalen of Geopackage geschikt is voor
+het uitwisselen van dergelijke gegevens, vooral in vergelijking met het
+traditionele gebruik van het Esri-bestandsformaat 'file geodatabase' door
+Provincie Zuid-Holland en Provincie Gelderland. Geonovum was betrokken bij deze
+opdracht vanwege haar rol als kennisorganisatie op het gebied van
+geo-standaardisatie in Nederland.
 
 ## Aanpak
 
 De aanpak omvatte het selecteren van een specifieke scope uit het NEN 2660-2
-model, zoals weergegeven in onderstaande tabel. Deze selectie vormde de basis
-voor het modelleren van informatiebehoeften in het Geopackage-bestandsformaat.
+model.
 
-| **Objecttypen** | **Attributen**                                          | **Relaties**                      |
-|-----------------|---------------------------------------------------------|-----------------------------------|
-| Identifier      | Identifier                                              | Identifier                        |
-| Naam            | Naam                                                    | Naam                              |
-| Definitie       | Definitie                                               | Definitie                         |
-|                 | Kardinaliteit                                           | Kardinaliteit                     |
-|                 | Eenheid                                                 | (De)compositie-relatie objecttype |
-|                 | Datatype                                                | Associatie-relatie geometrietype  |
-|                 | Domein (incl. domeinwaarden) Identifier Naam  Definitie | Associatie-relatie documenttype   |
+Deze bestaat uit *Objecttypen* (o.a. fysieke objecttypen, documenttypen) waarvan
+we *Kenmerken* op een specifieke manier ingevuld willen hebben. Fysieke objecten
+willen we ook koppelen middels *Relaties* aan vereiste geometrieën en
+documenten. Steeds vaker wordt ook de decompositie van een fysiek object
+uitgevraagd. Zie onderstaande tabel voor een concrete scope van de
+informatiebehoefte.
+
+Deze selectie vormde de basis voor het modelleren van informatiebehoeften in het
+Geopackage-bestandsformaat.
+
+| **Objecttypen** | **Attributen**                                           | **Relaties**                      |
+|-----------------|----------------------------------------------------------|-----------------------------------|
+| Identifier      | Identifier                                               | Identifier                        |
+| Naam            | Naam                                                     | Naam                              |
+| Definitie       | Definitie                                                | Definitie                         |
+|                 | Kardinaliteit                                            | Kardinaliteit                     |
+|                 | Eenheid                                                  | (De)compositie-relatie objecttype |
+|                 | Datatype                                                 | Associatie-relatie geometrietype  |
+|                 | Domein (incl. domeinwaarden) Identifier  Naam  Definitie | Associatie-relatie documenttype   |
 
 Het proces van het integreren van deze selectie uit de NEN2660-2 in Geopackage
 omvatte de volgende stappen: het identificeren van gegevens die direct kunnen
