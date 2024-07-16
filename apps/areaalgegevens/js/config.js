@@ -54,21 +54,21 @@ let respecConfig = {
   //-- de namen van de auteur(s) ------------------------------------------------------
   //-- vul in: per auteur: name:, company:, companyURL: -------------------------------
   authors:
-    [
-      {
-        name: "Arnoud de Boer",
-        company: "Geonovum",
-        companyURL: "https://www.geonovum.nl",
-      },
-      {
+    [      
+	  {
+        name: "Bart Monné",
+        company: "Provincie Noord-Holland",
+        //companyURL: "https://www.gelderland.nl",
+      },	  
+	  {
         name: "Bram Corneliszen",
         company: "Provincie Gelderland",
-        companyURL: "https://www.gelderland.nl",
+        //companyURL: "https://www.gelderland.nl",
       },
       {
         name: "Rakesh Kalpoe",
         company: "Provincie Zuid-Holland",
-        companyURL: "https://www.pzh.nl",
+        //companyURL: "https://www.pzh.nl",
       }
     ],
   //neem hier de URL van de github repository op waar het respec document in staat
